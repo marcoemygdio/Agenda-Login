@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Agenda de Contatos</h1>
+  <form action="/create" method="POST"> 
+    <input type="text" name="name" placeholder="Nome">
+    <input type="text" name="email" placeholder="E-mail">
+    <input type="text" name="phone" placeholder="Telefone">
+    <button type="submit">
+      Adicionar
+    </button>
+  </form>
+
+  <ul>
+    {% for i in contacts %}
+      <li>
+        <form action="/update/{{ i.id }}" method="POST">
+          <input type="text" name="name" placeholder="{{ i.name }}">
+          <input type="email" name="email" placeholder="{{ i.email }}">
+          <input type="text" name="phone" placeholder="{{ i.phone }}">
+          <button type="submit">
+            Editar
+          </button>
+          <a href="/delete/{{ i.id }}"> ❌ </a>
+        </form>
+      </li>
+    {% endfor %}
+  </ul>
+  
+</body>
+</html>
